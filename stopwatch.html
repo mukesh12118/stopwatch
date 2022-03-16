@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-weight: bold;
+
+        }
+
+        .sec {
+            display: flex;
+            gap: 900px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="container">
+            <!-- <p>0</p> -->
+
+            <button id="startbtn">click</button>
+
+            <button id="getbtn">get</button>
+        </div>
+        <div class="sec">
+            <div id="ans">
+
+            </div>
+
+
+            <div id="newdarsa">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let container = document.getElementById('container')
+        let startbtn = document.getElementById('startbtn')
+        let getbtn = document.getElementById('getbtn')
+        let para = document.createElement('p')
+        let ans = document.getElementById('ans')
+
+        let newdata = document.getElementById('newdarsa')
+
+
+        container.appendChild(para)
+
+
+        let second = 00
+        let minute = 00
+        let milli = 00
+
+
+
+
+        para.innerText = '0' + minute + " : " + '0' + second + " : " + milli + '0'
+
+
+        function seconds() {
+
+            para.innerText = minute + " : " + second + " : " + milli
+
+            milli++
+
+
+            if (second < 10) {
+                para.innerText = minute + " : " + second + " : " + milli
+
+            }
+            else if (minute < 10) {
+                para.innerText = minute + " : " + second + " : " + milli
+            }
+
+
+            if (milli > 59) {
+                second = second + 1
+                milli = 0
+            }
+
+            if (second > 59) {
+                minute = minute + 1
+
+                second = 0
+
+            }
+            if (minute > 59)
+                minute = 0
+
+
+        }
+
+        startbtn.addEventListener('click', () => {
+
+
+            let sec = setInterval(seconds, 10)
+
+        })
+
+        let counts = 0
+        let countss = 0
+
+        let lastResult = {
+            minute: 0,
+            second: 0,
+            ms: 0
+        }
+        getbtn.addEventListener('click', () => {
+
+            // console.log(milli, minute, second)
+
+
+            let headans = document.createElement('h4')
+            ans.appendChild(headans)
+            counts = counts + 1
+            headans.innerText = counts + ") " + minute + " : " + second + " : " + milli
+
+           
+           
+
+
+            let newminute =minute - ( lastResult.minute )
+            let newsecond = second-( lastResult.second) 
+            let newmilli =milli- (lastResult.ms) 
+
+
+
+
+            let valuesod = document.createElement('h4')
+            countss = countss + 1
+            newdata.appendChild(valuesod)
+            valuesod.innerText = countss + ') ' + newminute + ' : ' + newsecond + " : " + newmilli
+            // console.log(valuesod.innerText);
+            lastResult.minute = minute 
+            lastResult.second = second
+            lastResult.ms = milli
+
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
